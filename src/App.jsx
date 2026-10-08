@@ -4,7 +4,7 @@ import Home from "./Pages/Home";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import JobSeekerDashboard from "./Pages/JobSeekerDashboard";
-import JobSeekerProfile from "./pages/JobSeekerProfile";
+import JobSeekerProfile from "./Pages/JobSeekerProfile";
 import FindJobs from "./Pages/FindJobs";
 import JobDetails from "./Pages/JobDetails";
 import EligibilityAnalysis from "./Pages/EligibilityAnalysis";
