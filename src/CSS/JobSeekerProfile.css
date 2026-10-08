@@ -1,0 +1,1454 @@
+/* =========================================================
+   SMARTHIRE - JOB SEEKER PROFILE
+   Professional Purple Theme + Animations
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+.profile-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    background: #f7f5fc;
+    color: #24213a;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.profile-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 250px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 26px 18px;
+
+    background: linear-gradient(
+        180deg,
+        #6d3df5 0%,
+        #5630d8 50%,
+        #4825bd 100%
+    );
+
+    color: white;
+
+    z-index: 1000;
+
+    box-shadow: 8px 0 30px rgba(76, 42, 170, 0.15);
+
+    animation: sidebarSlide 0.7s ease forwards;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.profile-sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 22px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+
+    margin-bottom: 32px;
+
+    transition: transform 0.3s ease;
+}
+
+.profile-sidebar-logo:hover {
+    transform: translateX(3px);
+}
+
+.profile-logo-symbol {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.18);
+
+    font-size: 21px;
+    font-weight: 800;
+
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+    transition: all 0.3s ease;
+}
+
+.profile-sidebar-logo:hover .profile-logo-symbol {
+    transform: rotate(-6deg) scale(1.06);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+/* =========================================================
+   SIDEBAR USER
+   ========================================================= */
+
+.profile-sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 12px;
+    margin-bottom: 27px;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.09);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    animation: fadeUp 0.7s ease 0.15s both;
+}
+
+.profile-user-avatar {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #5b32dc;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.12);
+
+    transition: transform 0.3s ease;
+}
+
+.profile-sidebar-user:hover .profile-user-avatar {
+    transform: scale(1.08);
+}
+
+.profile-sidebar-user h4 {
+    margin: 0 0 4px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    max-width: 145px;
+}
+
+.profile-sidebar-user span {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+
+/* =========================================================
+   SIDEBAR MENU
+   ========================================================= */
+
+.profile-menu {
+    flex: 1;
+}
+
+.profile-menu-title {
+    margin: 0 10px 10px;
+
+    font-size: 10px;
+    font-weight: 750;
+
+    letter-spacing: 1.3px;
+
+    color: rgba(255, 255, 255, 0.52);
+}
+
+.profile-menu-title:not(:first-child) {
+    margin-top: 28px;
+}
+
+.profile-menu-link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 12px 13px;
+    margin-bottom: 5px;
+
+    border-radius: 10px;
+
+    color: rgba(255, 255, 255, 0.76);
+    text-decoration: none;
+
+    font-size: 13.5px;
+    font-weight: 500;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.profile-menu-link span {
+    width: 20px;
+
+    display: inline-flex;
+    justify-content: center;
+
+    font-size: 17px;
+
+    opacity: 0.9;
+
+    transition: transform 0.25s ease;
+}
+
+.profile-menu-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.11);
+
+    transform: translateX(4px);
+}
+
+.profile-menu-link:hover span {
+    transform: scale(1.12);
+}
+
+.profile-menu-link.active {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.16);
+
+    box-shadow:
+        inset 3px 0 0 white,
+        0 5px 16px rgba(27, 10, 91, 0.08);
+}
+
+.profile-menu-link.active span {
+    color: white;
+}
+
+
+/* =========================================================
+   SIDEBAR LOGOUT
+   ========================================================= */
+
+.profile-sidebar-bottom {
+    margin-top: auto;
+}
+
+.profile-logout {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.74);
+
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.profile-logout span {
+    font-size: 17px;
+}
+
+.profile-logout:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.10);
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.profile-content {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+
+    margin-left: 250px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.profile-topbar {
+    position: sticky;
+    top: 0;
+
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 42px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border-bottom: 1px solid #ece8f5;
+
+    backdrop-filter: blur(12px);
+
+    z-index: 50;
+
+    animation: topbarDrop 0.6s ease forwards;
+}
+
+.profile-topbar h2 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 750;
+
+    color: #25213b;
+}
+
+.profile-topbar p {
+    margin: 4px 0 0;
+
+    font-size: 12px;
+    color: #8b879b;
+}
+
+.profile-topbar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topbar-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eee8ff;
+    color: #6237e7;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.profile-topbar-user strong {
+    display: block;
+
+    font-size: 12.5px;
+    color: #302b46;
+}
+
+.profile-topbar-user span {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 10.5px;
+    color: #9290a0;
+}
+
+
+/* =========================================================
+   MAIN AREA
+   ========================================================= */
+
+.profile-main {
+    width: 100%;
+    max-width: 1120px;
+
+    margin: 0 auto;
+
+    padding: 36px 38px 50px;
+}
+
+
+/* =========================================================
+   INTRO SECTION
+   ========================================================= */
+
+.profile-intro {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 35px;
+
+    margin-bottom: 28px;
+
+    animation: fadeUp 0.7s ease 0.15s both;
+}
+
+.profile-label {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    color: #7041ed;
+}
+
+.profile-intro h1 {
+    margin: 0;
+
+    font-size: 29px;
+    line-height: 1.2;
+
+    letter-spacing: -0.7px;
+
+    color: #26213c;
+}
+
+.profile-intro p {
+    max-width: 600px;
+
+    margin: 9px 0 0;
+
+    font-size: 13px;
+    line-height: 1.6;
+
+    color: #817d91;
+}
+
+
+/* =========================================================
+   PROFILE COMPLETION
+   ========================================================= */
+
+.profile-completion {
+    width: 235px;
+    flex-shrink: 0;
+
+    padding: 16px 17px;
+
+    border-radius: 13px;
+
+    background: white;
+
+    border: 1px solid #ece8f5;
+
+    box-shadow: 0 8px 25px rgba(57, 35, 120, 0.05);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.profile-completion:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 13px 30px rgba(57, 35, 120, 0.09);
+}
+
+.completion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    font-size: 11px;
+    color: #777286;
+}
+
+.completion-header strong {
+    color: #6339df;
+    font-size: 13px;
+}
+
+.completion-bar {
+    width: 100%;
+    height: 7px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #ece8f6;
+}
+
+.completion-progress {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        #7041ed,
+        #9b78ff
+    );
+
+    animation: progressFill 1.2s ease 0.4s both;
+}
+
+
+/* =========================================================
+   PROFILE FORM
+   ========================================================= */
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* =========================================================
+   PROFILE SECTION
+   ========================================================= */
+
+.profile-section {
+    padding: 27px 29px;
+
+    border-radius: 16px;
+
+    background: white;
+
+    border: 1px solid #ebe7f3;
+
+    box-shadow: 0 7px 25px rgba(55, 33, 118, 0.045);
+
+    animation: sectionAppear 0.7s ease both;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.profile-section:nth-child(1) {
+    animation-delay: 0.20s;
+}
+
+.profile-section:nth-child(2) {
+    animation-delay: 0.30s;
+}
+
+.profile-section:nth-child(3) {
+    animation-delay: 0.40s;
+}
+
+.profile-section:nth-child(4) {
+    animation-delay: 0.50s;
+}
+
+.profile-section:nth-child(5) {
+    animation-delay: 0.60s;
+}
+
+.profile-section:hover {
+    border-color: #e2dbf6;
+
+    box-shadow: 0 12px 32px rgba(55, 33, 118, 0.07);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 24px;
+}
+
+.section-number {
+    width: 39px;
+    height: 39px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #f0ebff;
+    color: #6338e2;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.profile-section:hover .section-number {
+    transform: rotate(-4deg) scale(1.05);
+
+    background: #e8e0ff;
+}
+
+.section-title h2 {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 750;
+
+    color: #2c2741;
+}
+
+.section-title p {
+    margin: 4px 0 0;
+
+    font-size: 11.5px;
+    color: #8b8798;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 19px 22px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.profile-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-form-group label {
+    margin-bottom: 7px;
+
+    font-size: 11.5px;
+    font-weight: 650;
+
+    color: #4d485e;
+}
+
+.profile-form-group input,
+.profile-form-group select,
+.profile-form-group textarea {
+    width: 100%;
+
+    padding: 11px 13px;
+
+    border: 1px solid #ded9e9;
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #fbfaff;
+
+    color: #302b42;
+
+    font-family: inherit;
+    font-size: 12.5px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        transform 0.2s ease;
+}
+
+.profile-form-group input:hover,
+.profile-form-group select:hover,
+.profile-form-group textarea:hover {
+    border-color: #cfc6e5;
+}
+
+.profile-form-group input:focus,
+.profile-form-group select:focus,
+.profile-form-group textarea:focus {
+    background: white;
+
+    border-color: #7650e9;
+
+    box-shadow:
+        0 0 0 3px rgba(112, 65, 237, 0.09),
+        0 4px 14px rgba(78, 44, 163, 0.05);
+
+    transform: translateY(-1px);
+}
+
+.profile-form-group input::placeholder,
+.profile-form-group textarea::placeholder {
+    color: #aaa5b5;
+}
+
+.profile-form-group input[readonly] {
+    background: #f3f1f7;
+    color: #858091;
+    cursor: not-allowed;
+}
+
+.profile-form-group textarea {
+    resize: vertical;
+    min-height: 115px;
+    line-height: 1.6;
+}
+
+.profile-form-group small {
+    margin-top: 6px;
+
+    font-size: 10px;
+
+    color: #9994a5;
+}
+
+
+/* =========================================================
+   SELECT ARROW
+   ========================================================= */
+
+.profile-form-group select {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESUME UPLOAD
+   ========================================================= */
+
+.resume-upload {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    border: 1.5px dashed #d7cfee;
+    border-radius: 13px;
+
+    background: #faf8ff;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.resume-upload:hover {
+    border-color: #8b68eb;
+
+    background: #f7f3ff;
+
+    transform: translateY(-2px);
+}
+
+.resume-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #eee8ff;
+
+    font-size: 21px;
+
+    transition: transform 0.3s ease;
+}
+
+.resume-upload:hover .resume-icon {
+    transform: rotate(-5deg) scale(1.07);
+}
+
+.resume-text {
+    flex: 1;
+}
+
+.resume-text h3 {
+    margin: 0 0 4px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #383249;
+}
+
+.resume-text p {
+    margin: 0;
+
+    font-size: 10.5px;
+
+    color: #9792a3;
+}
+
+.selected-file {
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 10.5px;
+    font-weight: 600;
+
+    color: #6338e2;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resume-button {
+    padding: 9px 16px;
+
+    border-radius: 8px;
+
+    background: #ede8ff;
+    color: #6137df;
+
+    font-size: 11.5px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.resume-button:hover {
+    background: #6439e2;
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 12px;
+
+    padding-top: 3px;
+
+    animation: fadeUp 0.7s ease 0.7s both;
+}
+
+.cancel-button,
+.save-profile-button {
+    min-width: 125px;
+
+    padding: 11px 19px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.cancel-button {
+    border: 1px solid #ddd8e8;
+
+    background: white;
+
+    color: #666174;
+}
+
+.cancel-button:hover {
+    border-color: #c9c1dc;
+
+    background: #faf9fc;
+
+    transform: translateY(-2px);
+}
+
+.save-profile-button {
+    border: none;
+
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #7041ed,
+        #5930d2
+    );
+
+    box-shadow:
+        0 7px 17px rgba(99, 56, 226, 0.22);
+}
+
+.save-profile-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(99, 56, 226, 0.30);
+}
+
+.save-profile-button:active {
+    transform: translateY(0);
+}
+
+.save-profile-button:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.profile-footer {
+    margin-top: auto;
+
+    min-height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 40px;
+
+    border-top: 1px solid #e9e5f0;
+
+    background: white;
+
+    color: #9792a2;
+
+    font-size: 10.5px;
+}
+
+.profile-footer p {
+    margin: 0;
+}
+
+.profile-footer span {
+    color: #aaa5b4;
+}
+
+
+/* =========================================================
+   LOADING SCREEN
+   ========================================================= */
+
+.profile-loading {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #f7f5fc;
+
+    color: #6b647b;
+
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    animation: fadeIn 0.4s ease;
+}
+
+.profile-loading p {
+    margin-top: 15px;
+
+    font-size: 13px;
+}
+
+.profile-spinner {
+    width: 42px;
+    height: 42px;
+
+    border: 4px solid #e4ddf7;
+    border-top-color: #673ce3;
+
+    border-radius: 50%;
+
+    animation: spinnerRotate 0.8s linear infinite;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes sidebarSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes topbarDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes sectionAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes progressFill {
+    from {
+        width: 0 !important;
+    }
+
+    to {
+        width: 80%;
+    }
+}
+
+
+@keyframes spinnerRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .profile-sidebar {
+        width: 220px;
+    }
+
+    .profile-content {
+        width: calc(100% - 220px);
+        margin-left: 220px;
+    }
+
+    .profile-main {
+        padding: 30px 25px 45px;
+    }
+
+    .profile-topbar {
+        padding: 14px 25px;
+    }
+
+    .profile-intro {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .profile-completion {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .profile-sidebar {
+        position: relative;
+
+        width: 100%;
+        height: auto;
+
+        min-height: auto;
+
+        padding: 18px;
+
+        flex-direction: row;
+        align-items: center;
+
+        overflow-x: auto;
+    }
+
+    .profile-sidebar-logo {
+        margin: 0 20px 0 0;
+        flex-shrink: 0;
+    }
+
+    .profile-sidebar-user {
+        display: none;
+    }
+
+    .profile-menu {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        flex: 1;
+
+        overflow-x: auto;
+    }
+
+    .profile-menu-title {
+        display: none;
+    }
+
+    .profile-menu-link {
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .profile-sidebar-bottom {
+        margin: 0;
+    }
+
+    .profile-logout {
+        width: auto;
+        white-space: nowrap;
+    }
+
+    .profile-content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .profile-topbar {
+        position: relative;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .profile-page {
+        display: block;
+    }
+
+    .profile-sidebar {
+        padding: 13px 14px;
+
+        gap: 5px;
+    }
+
+    .profile-sidebar-logo {
+        font-size: 18px;
+    }
+
+    .profile-logo-symbol {
+        width: 32px;
+        height: 32px;
+
+        font-size: 17px;
+    }
+
+    .profile-menu-link {
+        padding: 9px 10px;
+
+        font-size: 11px;
+    }
+
+    .profile-menu-link span {
+        font-size: 14px;
+    }
+
+    .profile-logout {
+        padding: 9px 10px;
+
+        font-size: 11px;
+    }
+
+    .profile-topbar {
+        min-height: 70px;
+
+        padding: 12px 18px;
+    }
+
+    .profile-topbar h2 {
+        font-size: 17px;
+    }
+
+    .profile-topbar p {
+        font-size: 10px;
+    }
+
+    .profile-topbar-user {
+        display: none;
+    }
+
+    .profile-main {
+        padding: 25px 15px 35px;
+    }
+
+    .profile-intro h1 {
+        font-size: 24px;
+    }
+
+    .profile-intro p {
+        font-size: 12px;
+    }
+
+    .profile-section {
+        padding: 22px 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .section-title {
+        align-items: flex-start;
+    }
+
+    .section-number {
+        width: 34px;
+        height: 34px;
+    }
+
+    .section-title h2 {
+        font-size: 14px;
+    }
+
+    .section-title p {
+        font-size: 10.5px;
+    }
+
+    .resume-upload {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .resume-text {
+        min-width: calc(100% - 65px);
+    }
+
+    .resume-button {
+        margin-left: 61px;
+    }
+
+    .profile-actions {
+        width: 100%;
+    }
+
+    .cancel-button,
+    .save-profile-button {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .profile-footer {
+        padding: 17px 18px;
+
+        flex-direction: column;
+        gap: 5px;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .profile-sidebar-logo span:last-child {
+        display: none;
+    }
+
+    .profile-menu-link {
+        padding: 8px;
+    }
+
+    .profile-menu-link span {
+        margin: 0;
+    }
+
+    .profile-menu-link {
+        font-size: 0;
+    }
+
+    .profile-menu-link span {
+        font-size: 16px;
+    }
+
+    .profile-logout {
+        font-size: 0;
+    }
+
+    .profile-logout span {
+        font-size: 16px;
+    }
+
+    .profile-intro h1 {
+        font-size: 21px;
+    }
+
+    .profile-section {
+        padding: 19px 15px;
+    }
+
+    .profile-form-group input,
+    .profile-form-group select,
+    .profile-form-group textarea {
+        font-size: 12px;
+    }
+
+    .profile-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-button,
+    .save-profile-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
