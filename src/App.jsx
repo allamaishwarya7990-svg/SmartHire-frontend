@@ -1,10 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import JobSeekerDashboard from "./pages/JobSeekerDashboard";
+import Home from "./Pages/Home";
+import Register from "./Pages/Register";
+import Login from "./Pages/Login";
+import JobSeekerDashboard from "./Pages/JobSeekerDashboard";
 import JobSeekerProfile from "./pages/JobSeekerProfile";
+import FindJobs from "./Pages/FindJobs";
+import JobDetails from "./Pages/JobDetails";
+import EligibilityAnalysis from "./Pages/EligibilityAnalysis";
+import ApplyJob from "./Pages/ApplyJob";
+import MyApplications from "./Pages/MyApplications";
+
 
 function App() {
     return (
@@ -25,12 +31,21 @@ function App() {
 
                 <Route
                     path="/jobs"
-                    element={<div>Find Jobs Page</div>}
+                    element={<FindJobs />}
+                />
+                <Route path="/job/:id" element={<JobDetails />} />
+                <Route
+                    path="/job/:id/eligibility"
+                    element={<EligibilityAnalysis />}
+                />
+                <Route
+                    path="/job/:id/apply"
+                    element={<ApplyJob />}
                 />
 
                 <Route
                     path="/applications"
-                    element={<div>My Applications Page</div>}
+                    element={<MyApplications />}
                 />
 
                 <Route
