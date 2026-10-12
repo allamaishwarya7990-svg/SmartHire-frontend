@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import JobSeekerSidebar from "../Components/JobSeekerSidebar";
+import { FileText } from "lucide-react";
 import "../CSS/JobSeekerProfile.css";
 
 function JobSeekerProfile() {
@@ -200,96 +202,7 @@ function JobSeekerProfile() {
     return (
         <div className="profile-page">
 
-            {/* ================= SIDEBAR ================= */}
-            <aside className="profile-sidebar">
-
-                <Link to="/jobseeker-dashboard" className="profile-sidebar-logo">
-                    <span className="profile-logo-symbol">S</span>
-                    <span>SmartHire</span>
-                </Link>
-
-                <div className="profile-sidebar-user">
-                    <div className="profile-user-avatar">
-                        {profile.fullName
-                            ? profile.fullName.charAt(0).toUpperCase()
-                            : "U"}
-                    </div>
-
-                    <div>
-                        <h4>
-                            {profile.fullName || "Job Seeker"}
-                        </h4>
-
-                        <span>Job Seeker</span>
-                    </div>
-                </div>
-
-                <div className="profile-menu">
-
-                    <p className="profile-menu-title">
-                        MAIN MENU
-                    </p>
-
-                    <Link
-                        to="/jobseeker-dashboard"
-                        className="profile-menu-link"
-                    >
-                        <span>⌂</span>
-                        Dashboard
-                    </Link>
-
-                    <Link
-                        to="/jobs"
-                        className="profile-menu-link"
-                    >
-                        <span>⌕</span>
-                        Find Jobs
-                    </Link>
-
-                    <Link
-                        to="/applications"
-                        className="profile-menu-link"
-                    >
-                        <span>▣</span>
-                        My Applications
-                    </Link>
-
-                    <Link
-                        to="/saved-jobs"
-                        className="profile-menu-link"
-                    >
-                        <span>♡</span>
-                        Saved Jobs
-                    </Link>
-
-                    <p className="profile-menu-title">
-                        ACCOUNT
-                    </p>
-
-                    <Link
-                        to="/profile"
-                        className="profile-menu-link active"
-                    >
-                        <span>◉</span>
-                        My Profile
-                    </Link>
-
-                </div>
-
-                <div className="profile-sidebar-bottom">
-
-                    <button
-                        type="button"
-                        className="profile-logout"
-                        onClick={logout}
-                    >
-                        <span>↪</span>
-                        Logout
-                    </button>
-
-                </div>
-
-            </aside>
+            <JobSeekerSidebar />
 
             {/* ================= MAIN CONTENT ================= */}
             <div className="profile-content">
@@ -698,7 +611,7 @@ function JobSeekerProfile() {
                             <div className="resume-upload">
 
                                 <div className="resume-icon">
-                                    📄
+                                    <FileText size={28} />
                                 </div>
 
                                 <div className="resume-text">

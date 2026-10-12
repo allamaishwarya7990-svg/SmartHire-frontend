@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Sparkles, ArrowRight } from "lucide-react";
 import axios from "axios";
+import SmartHireLogo from "../Components/SmartHireLogo";
 import "../CSS/Register.css";
 
 function Register() {
@@ -68,28 +70,17 @@ function Register() {
             <div className="register-container">
 
                 {/* Logo */}
-
-                <Link to="/" className="register-logo">
-
-                    <span className="logo-symbol">
-                        S
-                    </span>
-
-                    <span>
-                        SmartHire
-                    </span>
-
-                </Link>
-
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}>
+                    <SmartHireLogo />
+                </div>
 
                 {/* Registration Card */}
-
                 <div className="register-card">
 
                     <div className="register-header">
 
                         <div className="header-icon">
-                            ✦
+                            <Sparkles size={22} color="var(--primary-emerald)" />
                         </div>
 
                         <h1>
@@ -217,9 +208,7 @@ function Register() {
                             }
 
                             {!loading && (
-                                <span className="arrow">
-                                    →
-                                </span>
+                                <ArrowRight size={18} style={{ marginLeft: "8px" }} />
                             )}
 
                         </button>

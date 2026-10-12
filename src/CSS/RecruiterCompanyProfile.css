@@ -1,0 +1,452 @@
+/* ==========================================================================
+   SMARTHIRE — RECRUITER COMPANY PROFILE
+   Palette: Dark Slate (#080B12, #0B101A, #111827), Emerald (#00C98B)
+   ========================================================================== */
+
+.company-profile-page {
+    min-height: 100vh;
+    display: flex;
+    background: var(--bg-main, #080B12);
+    color: var(--text-primary, #F8FAFC);
+    font-family: var(--font-main, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+.company-profile-main {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-main, #080B12);
+}
+
+/* TOPBAR */
+.company-profile-topbar {
+    height: 72px;
+    background: var(--bg-card, #111827);
+    border-bottom: 1px solid var(--border-color, #253247);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    box-sizing: border-box;
+}
+
+.company-profile-topbar-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--primary-emerald, #00C98B);
+    text-transform: uppercase;
+}
+
+.company-profile-topbar h1 {
+    margin: 2px 0 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary, #F8FAFC);
+}
+
+.company-profile-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.company-profile-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(0, 201, 139, 0.15);
+    border: 1px solid rgba(0, 201, 139, 0.3);
+    color: var(--primary-emerald, #00C98B);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.company-profile-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-profile-user-info strong {
+    font-size: 13px;
+    color: var(--text-primary, #F8FAFC);
+    font-weight: 600;
+}
+
+.company-profile-user-info span {
+    font-size: 11px;
+    color: var(--text-secondary, #94A3B8);
+}
+
+/* CONTENT CONTAINER */
+.company-profile-content {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+/* ALERTS */
+.company-profile-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+.company-profile-alert.success {
+    background: rgba(0, 201, 139, 0.12);
+    border: 1px solid rgba(0, 201, 139, 0.35);
+    color: var(--primary-emerald, #00C98B);
+}
+
+.company-profile-alert.error {
+    background: rgba(251, 113, 133, 0.12);
+    border: 1px solid rgba(251, 113, 133, 0.35);
+    color: var(--badge-error, #FB7185);
+}
+
+.alert-close-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.alert-close-btn:hover {
+    opacity: 1;
+}
+
+/* HEADING */
+.company-profile-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.company-profile-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--primary-emerald, #00C98B);
+    text-transform: uppercase;
+}
+
+.company-profile-heading h2 {
+    margin: 6px 0 6px;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary, #F8FAFC);
+}
+
+.company-profile-heading p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary, #94A3B8);
+}
+
+.edit-profile-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--primary-emerald, #00C98B);
+    background: rgba(0, 201, 139, 0.1);
+    color: var(--primary-emerald, #00C98B);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.edit-profile-button:hover {
+    background: var(--primary-emerald, #00C98B);
+    color: #080B12;
+    box-shadow: 0 4px 14px rgba(0, 201, 139, 0.25);
+    transform: translateY(-1px);
+}
+
+/* BANNER */
+.company-profile-banner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--bg-card, #111827);
+    border: 1px solid var(--border-color, #253247);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+}
+
+.company-large-logo {
+    width: 68px;
+    height: 68px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(0, 201, 139, 0.2), rgba(0, 201, 139, 0.05));
+    border: 1px solid rgba(0, 201, 139, 0.35);
+    color: var(--primary-emerald, #00C98B);
+    font-size: 30px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(0, 201, 139, 0.12);
+}
+
+.company-banner-info h2 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary, #F8FAFC);
+}
+
+.company-banner-info > p {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-emerald, #00C98B);
+}
+
+.company-banner-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.company-banner-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-secondary, #94A3B8);
+}
+
+/* FORM CARDS */
+.company-profile-card {
+    background: var(--bg-card, #111827);
+    border: 1px solid var(--border-color, #253247);
+    border-radius: 14px;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.company-card-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border-color, #253247);
+    background: var(--bg-elevated, #0B101A);
+}
+
+.company-card-header h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary, #F8FAFC);
+}
+
+.company-card-header p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-secondary, #94A3B8);
+}
+
+.company-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 24px;
+}
+
+.company-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.company-form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary, #94A3B8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.company-form-group input,
+.company-form-group select,
+.company-form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--bg-elevated, #0B101A);
+    border: 1px solid var(--border-color, #253247);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-primary, #F8FAFC);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.company-form-group input:focus,
+.company-form-group select:focus,
+.company-form-group textarea:focus {
+    border-color: var(--primary-emerald, #00C98B);
+    background: #0d1422;
+    box-shadow: 0 0 0 3px rgba(0, 201, 139, 0.15);
+}
+
+.company-form-group input:disabled,
+.company-form-group select:disabled,
+.company-form-group textarea:disabled {
+    background: rgba(17, 24, 39, 0.6);
+    border-color: rgba(37, 50, 71, 0.6);
+    color: var(--text-secondary, #94A3B8);
+    cursor: not-allowed;
+}
+
+.company-form-group select option {
+    background: var(--bg-card, #111827);
+    color: var(--text-primary, #F8FAFC);
+}
+
+.company-form-group textarea {
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.company-description-group {
+    padding: 24px;
+}
+
+/* ACTIONS */
+.company-profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.cancel-profile-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    background: var(--bg-elevated, #0B101A);
+    border: 1px solid var(--border-color, #253247);
+    color: var(--text-secondary, #94A3B8);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-profile-button:hover:not(:disabled) {
+    background: var(--bg-hover, #172235);
+    color: var(--text-primary, #F8FAFC);
+}
+
+.save-profile-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    background: var(--primary-emerald, #00C98B);
+    border: 1px solid var(--primary-emerald, #00C98B);
+    color: #080B12;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 201, 139, 0.25);
+}
+
+.save-profile-button:hover:not(:disabled) {
+    background: var(--primary-hover, #00DFA0);
+    border-color: var(--primary-hover, #00DFA0);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 201, 139, 0.35);
+}
+
+.cancel-profile-button:disabled,
+.save-profile-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ANIMATIONS & RESPONSIVE */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .company-profile-content {
+        padding: 24px;
+    }
+    .company-profile-topbar {
+        padding: 0 20px;
+    }
+    .company-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .company-profile-topbar {
+        height: auto;
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .company-profile-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .company-profile-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    .company-banner-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .company-profile-actions {
+        flex-direction: column-reverse;
+    }
+    .cancel-profile-button,
+    .save-profile-button {
+        width: 100%;
+        justify-content: center;
+    }
+}

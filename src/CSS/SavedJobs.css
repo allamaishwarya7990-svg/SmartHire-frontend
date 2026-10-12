@@ -1,0 +1,355 @@
+/* =========================================================
+   SAVED JOBS PAGE
+   Modern Emerald Dark Design System
+   ========================================================= */
+
+.saved-jobs-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    background: var(--bg-main, #080B12);
+    color: var(--text-primary, #F8FAFC);
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.saved-jobs-main {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-main, #080B12);
+}
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.saved-jobs-topbar {
+    position: sticky;
+    top: 0;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background: rgba(11, 16, 26, 0.85);
+    border-bottom: 1px solid var(--border-color, #253247);
+    backdrop-filter: blur(12px);
+    z-index: 50;
+}
+
+.saved-jobs-topbar h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary, #F8FAFC);
+}
+
+.saved-jobs-topbar p {
+    margin: 3px 0 0;
+    font-size: 0.8rem;
+    color: var(--text-secondary, #94A3B8);
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.saved-jobs-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 40px 60px;
+}
+
+/* =========================================================
+   SUMMARY CARD
+   ========================================================= */
+
+.saved-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color, #253247);
+    border-radius: 12px;
+    background: var(--bg-card, #111827);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    width: fit-content;
+}
+
+.saved-summary-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: var(--primary-emerald-soft, rgba(0, 201, 139, 0.12));
+    color: var(--primary-emerald, #00C98B);
+    border: 1px solid rgba(0, 201, 139, 0.25);
+}
+
+.saved-summary-card span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary, #94A3B8);
+}
+
+.saved-summary-card strong {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary, #F8FAFC);
+    margin-top: 2px;
+}
+
+/* =========================================================
+   SAVED SECTION
+   ========================================================= */
+
+.saved-jobs-section {
+    width: 100%;
+    padding: 28px;
+    border: 1px solid var(--border-color, #253247);
+    border-radius: 14px;
+    background: var(--bg-card, #111827);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.saved-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-color, #253247);
+}
+
+.saved-section-header h2 {
+    margin: 0;
+    color: var(--text-primary, #F8FAFC);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.saved-count-pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: var(--primary-emerald-soft, rgba(0, 201, 139, 0.12));
+    color: var(--primary-emerald, #00C98B);
+    border: 1px solid rgba(0, 201, 139, 0.25);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* =========================================================
+   SAVED LIST & CARDS
+   ========================================================= */
+
+.saved-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.saved-job-card {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 18px;
+    padding: 20px;
+    border: 1px solid var(--border-color, #253247);
+    border-radius: 12px;
+    background: var(--bg-elevated, #0B101A);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.saved-job-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 201, 139, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.saved-card-logo {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: var(--primary-emerald-soft, rgba(0, 201, 139, 0.12));
+    color: var(--primary-emerald, #00C98B);
+    border: 1px solid rgba(0, 201, 139, 0.25);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.saved-card-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.saved-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.saved-title-row h3 {
+    margin: 0 0 4px;
+    color: var(--text-primary, #F8FAFC);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.saved-title-row p {
+    margin: 0;
+    color: var(--text-secondary, #94A3B8);
+    font-size: 0.825rem;
+}
+
+.saved-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--secondary-blue-soft, rgba(96, 165, 250, 0.12));
+    color: var(--secondary-blue, #60A5FA);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    font-size: 0.725rem;
+    font-weight: 600;
+}
+
+.saved-meta-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-bottom: 12px;
+}
+
+.saved-meta-row span {
+    color: var(--text-secondary, #94A3B8);
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.saved-skills-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.saved-skill-chip {
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--bg-hover, #172235);
+    color: var(--text-secondary, #94A3B8);
+    border: 1px solid var(--border-color, #253247);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.saved-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color, #253247);
+}
+
+.saved-match-box span {
+    font-size: 0.725rem;
+    color: var(--text-muted, #64748B);
+    display: block;
+}
+
+.saved-match-box strong {
+    font-size: 0.85rem;
+    color: var(--primary-emerald, #00C98B);
+}
+
+.saved-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.remove-saved-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-muted, #64748B);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.remove-saved-btn:hover {
+    color: #FB7185;
+}
+
+.apply-saved-btn {
+    min-height: 36px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary-emerald, #00C98B);
+    color: #080B12;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 201, 139, 0.25);
+    transition: all 0.2s ease;
+}
+
+.apply-saved-btn:hover {
+    background: var(--primary-emerald-hover, #00DFA0);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 201, 139, 0.35);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+    .saved-jobs-container {
+        padding: 24px 20px 40px;
+    }
+
+    .saved-jobs-topbar {
+        padding: 14px 20px;
+    }
+
+    .saved-job-card {
+        grid-template-columns: 1fr;
+    }
+
+    .saved-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .saved-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .saved-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

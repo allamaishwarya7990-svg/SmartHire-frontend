@@ -1,0 +1,983 @@
+/* =========================================================
+   SMARTHIRE — APPLICATION DETAILS
+   Dark Navy + Emerald Theme
+   Matches ApplicationDetails.jsx
+========================================================= */
+
+.application-details-page {
+  --ad-bg: #080b12;
+  --ad-elevated: #0b101a;
+  --ad-card: #111827;
+  --ad-hover: #172235;
+  --ad-green: #00c98b;
+  --ad-green-hover: #00dfa0;
+  --ad-blue: #60a5fa;
+  --ad-text: #f8fafc;
+  --ad-secondary: #94a3b8;
+  --ad-muted: #64748b;
+  --ad-border: #253247;
+  --ad-success: #34d399;
+  --ad-warning: #fbbf24;
+  --ad-danger: #fb7185;
+
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--ad-bg);
+  color: var(--ad-text);
+  font-family: var(--font-body, "Inter", sans-serif);
+  line-height: 1.5;
+}
+
+.application-details-page *,
+.application-details-page *::before,
+.application-details-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   PAGE CONTAINER
+========================================================= */
+
+.application-details-container {
+  width: min(1180px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 30px 0 48px;
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.application-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 27px;
+  color: var(--ad-muted);
+  font-size: 12px;
+}
+
+.application-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--ad-blue);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.application-back-link:hover {
+  color: var(--ad-green);
+}
+
+.application-breadcrumb-separator {
+  color: #475569;
+}
+
+.application-breadcrumb > span:last-child {
+  color: var(--ad-secondary);
+}
+
+/* =========================================================
+   APPLICATION HEADER
+========================================================= */
+
+.application-details-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 27px;
+  margin-bottom: 25px;
+  border: 1px solid var(--ad-border);
+  border-radius: 16px;
+  background:
+    radial-gradient(
+      ellipse at top left,
+      rgba(0, 201, 139, 0.07),
+      transparent 55%
+    ),
+    var(--ad-card);
+}
+
+.application-heading-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 19px;
+  min-width: 0;
+}
+
+.application-company-avatar {
+  display: flex;
+  flex: 0 0 58px;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  border-radius: 15px;
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--ad-blue);
+  font-size: 23px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.application-heading-text {
+  min-width: 0;
+}
+
+.application-eyebrow {
+  margin: 0 0 7px;
+  color: var(--ad-green);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.application-heading-text h1 {
+  margin: 0;
+  color: var(--ad-text);
+  font-size: clamp(23px, 3vw, 31px);
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -0.6px;
+  overflow-wrap: anywhere;
+}
+
+.application-company-name {
+  margin: 8px 0 4px;
+  color: var(--ad-secondary);
+  font-size: 14px;
+  font-weight: 550;
+  overflow-wrap: anywhere;
+}
+
+.application-location {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 7px 0 0;
+  color: var(--ad-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.application-location span {
+  color: var(--ad-blue);
+  font-size: 16px;
+}
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.application-status-badge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 33px;
+  padding: 7px 12px;
+  border: 1px solid var(--ad-border);
+  border-radius: 999px;
+  background: var(--ad-elevated);
+  color: var(--ad-secondary);
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.application-status-dot {
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.application-status-success {
+  border-color: rgba(52, 211, 153, 0.3);
+  background: rgba(52, 211, 153, 0.09);
+  color: var(--ad-success);
+}
+
+.application-status-danger {
+  border-color: rgba(251, 113, 133, 0.3);
+  background: rgba(251, 113, 133, 0.09);
+  color: var(--ad-danger);
+}
+
+.application-status-info {
+  border-color: rgba(96, 165, 250, 0.3);
+  background: rgba(96, 165, 250, 0.09);
+  color: var(--ad-blue);
+}
+
+.application-status-warning {
+  border-color: rgba(251, 191, 36, 0.3);
+  background: rgba(251, 191, 36, 0.09);
+  color: var(--ad-warning);
+}
+
+.application-status-neutral {
+  border-color: var(--ad-border);
+  background: var(--ad-elevated);
+  color: var(--ad-secondary);
+}
+
+/* =========================================================
+   MAIN TWO-COLUMN LAYOUT
+========================================================= */
+
+.application-details-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  align-items: start;
+  gap: 24px;
+}
+
+.application-main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.application-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* =========================================================
+   SHARED PANELS
+========================================================= */
+
+.application-panel {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--ad-border);
+  border-radius: 14px;
+  background: var(--ad-card);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.application-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.application-panel-heading > div {
+  min-width: 0;
+}
+
+.application-panel-heading .application-eyebrow {
+  margin-bottom: 5px;
+}
+
+.application-panel-heading h2 {
+  margin: 0;
+  color: var(--ad-text);
+  font-size: 17px;
+  font-weight: 750;
+  line-height: 1.4;
+  letter-spacing: -0.25px;
+  overflow-wrap: anywhere;
+}
+
+.application-panel-icon {
+  display: flex;
+  flex: 0 0 39px;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  border: 1px solid rgba(0, 201, 139, 0.2);
+  border-radius: 10px;
+  background: rgba(0, 201, 139, 0.09);
+  color: var(--ad-green);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   APPLICATION SUMMARY
+========================================================= */
+
+.application-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.application-summary-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: 90px;
+  padding: 16px;
+  border: 1px solid var(--ad-border);
+  border-radius: 10px;
+  background: var(--ad-elevated);
+}
+
+.application-field-label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--ad-muted);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.application-summary-item strong,
+.application-info-item strong {
+  color: var(--ad-text);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.application-summary-item .application-id-value {
+  color: var(--ad-green);
+  font-size: 13px;
+}
+
+/* =========================================================
+   ELIGIBILITY SCORE
+========================================================= */
+
+.application-score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 17px;
+}
+
+.application-score-row > div {
+  min-width: 0;
+}
+
+.application-score-value {
+  display: block;
+  color: var(--ad-green);
+  font-size: 35px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  overflow-wrap: anywhere;
+}
+
+.application-muted-text {
+  margin: 7px 0 0;
+  color: var(--ad-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.application-score-track {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 999px;
+  background: #202b3b;
+}
+
+.application-score-fill {
+  height: 100%;
+  min-width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #087c60, #00c98b, #34d399);
+  transition: width 0.45s ease;
+}
+
+/* =========================================================
+   DESCRIPTION AND RECRUITER NOTES
+========================================================= */
+
+.application-description {
+  margin: 0;
+  color: var(--ad-secondary);
+  font-size: 13px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* =========================================================
+   APPLICATION STATUS PROGRESS
+========================================================= */
+
+.application-status-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 17px;
+  border: 1px solid var(--ad-border);
+  border-radius: 11px;
+  background: var(--ad-elevated);
+}
+
+.application-status-indicator {
+  flex: 0 0 10px;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: var(--ad-muted);
+  box-shadow: 0 0 0 4px rgba(100, 116, 139, 0.1);
+}
+
+.application-indicator-success {
+  background: var(--ad-success);
+  box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.1);
+}
+
+.application-indicator-danger {
+  background: var(--ad-danger);
+  box-shadow: 0 0 0 4px rgba(251, 113, 133, 0.1);
+}
+
+.application-indicator-info {
+  background: var(--ad-blue);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+}
+
+.application-indicator-warning {
+  background: var(--ad-warning);
+  box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.1);
+}
+
+.application-indicator-neutral {
+  background: var(--ad-muted);
+}
+
+.application-status-detail > div {
+  min-width: 0;
+}
+
+.application-status-detail h3 {
+  margin: 0 0 6px;
+  color: var(--ad-text);
+  font-size: 14px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.application-status-detail p {
+  margin: 0;
+  color: var(--ad-secondary);
+  font-size: 12px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.application-status-disclaimer {
+  margin: 14px 0 0;
+  color: var(--ad-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   JOB INFORMATION SIDEBAR
+========================================================= */
+
+.application-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.application-info-item {
+  min-width: 0;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--ad-border);
+}
+
+.application-info-item:first-child {
+  padding-top: 0;
+}
+
+.application-info-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.application-info-item .application-field-label {
+  margin-bottom: 5px;
+}
+
+.application-info-item strong {
+  display: block;
+  font-size: 12px;
+}
+
+/* =========================================================
+   HELP CARD
+========================================================= */
+
+.application-help-card {
+  padding: 22px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 14px;
+  background:
+    radial-gradient(
+      ellipse at top left,
+      rgba(96, 165, 250, 0.08),
+      transparent 65%
+    ),
+    var(--ad-card);
+}
+
+.application-help-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 11px;
+  background: rgba(96, 165, 250, 0.1);
+  color: var(--ad-blue);
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.application-help-card h3 {
+  margin: 0;
+  color: var(--ad-text);
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.application-help-card p {
+  margin: 9px 0 18px;
+  color: var(--ad-secondary);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.application-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.application-button-primary {
+  border-color: var(--ad-green);
+  background: var(--ad-green);
+  color: #06140f;
+}
+
+.application-button-primary:hover {
+  border-color: var(--ad-green-hover);
+  background: var(--ad-green-hover);
+  transform: translateY(-1px);
+}
+
+.application-button-secondary {
+  border-color: var(--ad-border);
+  background: var(--ad-elevated);
+  color: var(--ad-text);
+}
+
+.application-button-secondary:hover {
+  border-color: #3b4d65;
+  background: var(--ad-hover);
+}
+
+.application-full-width {
+  width: 100%;
+}
+
+/* =========================================================
+   PAGE FOOTER
+========================================================= */
+
+.application-details-footer {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 25px;
+  margin-top: 25px;
+  border-top: 1px solid var(--ad-border);
+}
+
+/* =========================================================
+   LOADING AND ERROR STATES
+========================================================= */
+
+.application-state-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 36px 24px;
+  margin-top: 25px;
+  border: 1px solid var(--ad-border);
+  border-radius: 16px;
+  background: var(--ad-card);
+  text-align: center;
+}
+
+.application-state-card h2 {
+  margin: 18px 0 7px;
+  color: var(--ad-text);
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.application-state-card > p {
+  max-width: 480px;
+  margin: 0;
+  color: var(--ad-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.application-spinner {
+  width: 38px;
+  height: 38px;
+  border: 3px solid var(--ad-border);
+  border-top-color: var(--ad-green);
+  border-radius: 50%;
+  animation: application-details-spin 0.8s linear infinite;
+}
+
+@keyframes application-details-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.application-state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  border-radius: 50%;
+  background: rgba(251, 113, 133, 0.1);
+  color: var(--ad-danger);
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.application-error-card h2 {
+  margin-top: 15px;
+}
+
+.application-error-card [role="alert"] {
+  color: #fda4af;
+}
+
+.application-state-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+========================================================= */
+
+.application-details-page a:focus-visible,
+.application-details-page button:focus-visible {
+  outline: 2px solid var(--ad-green);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+  .application-details-container {
+    width: calc(100% - 40px);
+  }
+
+  .application-details-grid {
+    grid-template-columns: minmax(0, 1fr) 270px;
+    gap: 18px;
+  }
+
+  .application-panel {
+    padding: 20px;
+  }
+
+  .application-details-header {
+    padding: 23px;
+  }
+}
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+  .application-details-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .application-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .application-sidebar > .application-panel {
+    min-width: 0;
+  }
+
+  .application-sidebar > .application-help-card {
+    min-width: 0;
+  }
+
+  .application-details-header {
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .application-details-container {
+    width: calc(100% - 28px);
+    padding: 21px 0 30px;
+  }
+
+  .application-breadcrumb {
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 11px;
+  }
+
+  .application-back-link {
+    font-size: 12px;
+  }
+
+  .application-details-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding: 19px;
+    margin-bottom: 18px;
+    border-radius: 13px;
+  }
+
+  .application-heading-content {
+    align-items: flex-start;
+    gap: 13px;
+    width: 100%;
+  }
+
+  .application-company-avatar {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    font-size: 19px;
+  }
+
+  .application-heading-text h1 {
+    font-size: 22px;
+    letter-spacing: -0.4px;
+  }
+
+  .application-company-name {
+    font-size: 13px;
+  }
+
+  .application-status-badge {
+    align-self: flex-start;
+  }
+
+  .application-details-grid {
+    gap: 16px;
+  }
+
+  .application-main-column,
+  .application-sidebar {
+    gap: 16px;
+  }
+
+  .application-sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .application-panel {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .application-panel-heading {
+    margin-bottom: 17px;
+  }
+
+  .application-panel-heading h2 {
+    font-size: 16px;
+  }
+
+  .application-panel-icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .application-summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .application-summary-item {
+    min-height: 75px;
+    padding: 13px;
+  }
+
+  .application-score-value {
+    font-size: 30px;
+  }
+
+  .application-status-detail {
+    padding: 14px;
+  }
+
+  .application-help-card {
+    padding: 19px;
+  }
+
+  .application-details-footer {
+    padding-top: 19px;
+    margin-top: 19px;
+  }
+
+  .application-details-footer .application-button {
+    width: 100%;
+  }
+
+  .application-state-card {
+    min-height: 270px;
+    padding: 25px 17px;
+    margin-top: 20px;
+  }
+
+  .application-state-card h2 {
+    font-size: 17px;
+  }
+
+  .application-state-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .application-state-actions .application-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  .application-details-container {
+    width: calc(100% - 22px);
+  }
+
+  .application-details-header {
+    padding: 15px;
+  }
+
+  .application-heading-content {
+    gap: 10px;
+  }
+
+  .application-company-avatar {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .application-heading-text h1 {
+    font-size: 19px;
+  }
+
+  .application-panel {
+    padding: 15px;
+  }
+
+  .application-panel-heading h2 {
+    font-size: 15px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .application-details-page *,
+  .application-details-page *::before,
+  .application-details-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,5 +1,10 @@
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { jobApi, jobSeekerApi, authApi } from "../services/api";
+import JobSeekerSidebar from "../Components/JobSeekerSidebar";
+import { Bell, ArrowRight, UserCheck, Bookmark, FileText, Sparkles, MapPin, Briefcase } from "lucide-react";
 import "../CSS/JobSeekerDashboard.css";
+import "../CSS/theme.css";
 
 function JobSeekerDashboard() {
 
@@ -7,44 +12,75 @@ function JobSeekerDashboard() {
 
     const email = localStorage.getItem("email") || "Job Seeker";
 
-    const logout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("email");
-        localStorage.removeItem("role");
-
-        navigate("/login");
-    };
-
-
-    const jobs = [
+    const [jobs, setJobs] = useState([
         {
             id: 1,
             title: "Software Developer",
-            company: "Technology Company",
-            location: "Hyderabad",
+            company: "TechNova Solutions",
+            location: "Hyderabad, Telangana",
             type: "Full Time",
             skills: ["Java", "React", "SQL"],
-            eligibility: 80
+            eligibility: 85
         },
         {
             id: 2,
             title: "Frontend Developer",
-            company: "Digital Solutions",
-            location: "Hyderabad",
+            company: "PixelCraft Technologies",
+            location: "Remote",
             type: "Full Time",
             skills: ["React", "JavaScript", "CSS"],
-            eligibility: 75
-        },
-        {
-            id: 3,
-            title: "Java Developer",
-            company: "Innovate Technologies",
-            location: "Bangalore",
-            type: "Full Time",
-            skills: ["Java", "Spring Boot", "MySQL"],
-            eligibility: 70
+            eligibility: 80
         }
-    ];
+    ]);
+    const [appCount, setAppCount] = useState(0);
+    const [savedCount, setSavedCount] = useState(0);
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    const loadData = async () => {
+        try {
+            const jobsRes = await jobApi.searchJobs();
+            if (jobsRes.data && jobsRes.data.length > 0) {
+                const mapped = jobsRes.data.slice(0, 5).map((j) => ({
+                    id: j.id,
+                    title: j.title,
+                    company: j.companyName,
+                    location: j.location,
+                    type: j.type,
+                    skills: typeof j.skills === "string" ? j.skills.split(",").map((s) => s.trim()) : (j.skills || []),
+                    eligibility: j.eligibilityScore || 80
+                }));
+                setJobs(mapped);
+            }
+        } catch (e) {
+            console.warn("Could not load jobs for dashboard:", e);
+        }
+
+        try {
+            const appsRes = await jobSeekerApi.getApplications();
+            if (appsRes.data) {
+                setAppCount(appsRes.data.length);
+            }
+        } catch (e) {
+            console.warn("Could not load applications count:", e);
+        }
+
+        try {
+            const savedRes = await jobSeekerApi.getSavedJobs();
+            if (savedRes.data) {
+                setSavedCount(savedRes.data.length);
+            }
+        } catch (e) {
+            console.warn("Could not load saved jobs count:", e);
+        }
+    };
+
+    const logout = () => {
+        authApi.logout();
+        navigate("/login");
+    };
 
 
     return (
@@ -52,194 +88,7 @@ function JobSeekerDashboard() {
         <div className="jobseeker-page">
 
 
-            {/* ================= SIDEBAR ================= */}
-
-            <aside className="dashboard-sidebar">
-
-                <Link
-                    to="/jobseeker-dashboard"
-                    className="sidebar-logo"
-                >
-                    <span className="sidebar-logo-symbol">
-                        S
-                    </span>
-
-                    <span>
-                        SmartHire
-                    </span>
-                </Link>
-
-
-                {/* USER */}
-
-                <div className="sidebar-profile">
-
-                    <div className="sidebar-avatar">
-                        {email.charAt(0).toUpperCase()}
-                    </div>
-
-                    <div className="sidebar-user-info">
-
-                        <strong>
-                            Job Seeker
-                        </strong>
-
-                        <span>
-                            Candidate
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                {/* MAIN MENU */}
-
-                <div className="sidebar-section">
-
-                    <p className="sidebar-heading">
-                        MAIN MENU
-                    </p>
-
-
-                    <Link
-                        to="/jobseeker-dashboard"
-                        className="sidebar-link active"
-                    >
-                        <span className="sidebar-icon">
-                            ⌂
-                        </span>
-
-                        <span>
-                            Dashboard
-                        </span>
-                    </Link>
-
-
-                    <Link
-                        to="/jobs"
-                        className="sidebar-link"
-                    >
-                        <span className="sidebar-icon">
-                            ◉
-                        </span>
-
-                        <span>
-                            Find Jobs
-                        </span>
-                    </Link>
-
-
-                    <Link
-                        to="/applications"
-                        className="sidebar-link"
-                    >
-                        <span className="sidebar-icon">
-                            ▣
-                        </span>
-
-                        <span>
-                            My Applications
-                        </span>
-                    </Link>
-
-
-                    <Link
-                        to="/saved-jobs"
-                        className="sidebar-link"
-                    >
-                        <span className="sidebar-icon">
-                            ♡
-                        </span>
-
-                        <span>
-                            Saved Jobs
-                        </span>
-                    </Link>
-
-                </div>
-
-
-                {/* ACCOUNT */}
-
-                <div className="sidebar-section">
-
-                    <p className="sidebar-heading">
-                        MY ACCOUNT
-                    </p>
-
-
-                    <Link
-                        to="/profile"
-                        className="sidebar-link"
-                    >
-                        <span className="sidebar-icon">
-                            ◯
-                        </span>
-
-                        <span>
-                            My Profile
-                        </span>
-                    </Link>
-
-
-                    <Link
-                        to="/profile"
-                        className="sidebar-link"
-                    >
-                        <span className="sidebar-icon">
-                            ⚙
-                        </span>
-
-                        <span>
-                            Settings
-                        </span>
-                    </Link>
-
-                </div>
-
-
-                {/* SIDEBAR BOTTOM */}
-
-                <div className="sidebar-bottom">
-
-                    <div className="sidebar-help">
-
-                        <div className="help-icon">
-                            ?
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Need Help?
-                            </strong>
-
-                            <span>
-                                We're here for you
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        className="sidebar-logout"
-                        onClick={logout}
-                    >
-
-                        <span>
-                            ↪
-                        </span>
-
-                        Logout
-
-                    </button>
-
-                </div>
-
-            </aside>
+            <JobSeekerSidebar />
 
 
 
@@ -267,8 +116,8 @@ function JobSeekerDashboard() {
 
                     <div className="topbar-right">
 
-                        <button className="notification-button">
-                            ♢
+                        <button className="notification-button" title="Notifications">
+                            <Bell size={18} />
                         </button>
 
 
@@ -332,7 +181,7 @@ function JobSeekerDashboard() {
                             className="banner-button"
                         >
                             Find Jobs
-                            <span>→</span>
+                            <ArrowRight size={16} />
                         </Link>
 
                     </section>
@@ -347,7 +196,7 @@ function JobSeekerDashboard() {
                         <div className="stat-card">
 
                             <div className="stat-icon">
-                                ◯
+                                <UserCheck size={20} />
                             </div>
 
                             <div className="stat-content">
@@ -373,7 +222,7 @@ function JobSeekerDashboard() {
                         <div className="stat-card">
 
                             <div className="stat-icon">
-                                ♡
+                                <Bookmark size={20} />
                             </div>
 
                             <div className="stat-content">
@@ -383,7 +232,7 @@ function JobSeekerDashboard() {
                                 </span>
 
                                 <strong>
-                                    5
+                                    {savedCount}
                                 </strong>
 
                                 <small>
@@ -399,7 +248,7 @@ function JobSeekerDashboard() {
                         <div className="stat-card">
 
                             <div className="stat-icon">
-                                ▣
+                                <FileText size={20} />
                             </div>
 
                             <div className="stat-content">
@@ -409,7 +258,7 @@ function JobSeekerDashboard() {
                                 </span>
 
                                 <strong>
-                                    3
+                                    {appCount}
                                 </strong>
 
                                 <small>
@@ -425,7 +274,7 @@ function JobSeekerDashboard() {
                         <div className="stat-card">
 
                             <div className="stat-icon">
-                                ✦
+                                <Sparkles size={20} />
                             </div>
 
                             <div className="stat-content">
@@ -479,7 +328,7 @@ function JobSeekerDashboard() {
                                     to="/jobs"
                                     className="view-all"
                                 >
-                                    View All →
+                                    View All <ArrowRight size={14} />
                                 </Link>
 
                             </div>
@@ -521,11 +370,11 @@ function JobSeekerDashboard() {
                                         <div className="job-details">
 
                                             <span>
-                                                📍 {job.location}
+                                                <MapPin size={13} /> {job.location}
                                             </span>
 
                                             <span>
-                                                💼 {job.type}
+                                                <Briefcase size={13} /> {job.type}
                                             </span>
 
                                         </div>
@@ -580,13 +429,12 @@ function JobSeekerDashboard() {
                                             </div>
 
 
-                                            <button className="view-job-button">
-
+                                            <button 
+                                                className="view-job-button"
+                                                onClick={() => navigate(`/job/${job.id}`)}
+                                            >
                                                 View Job
-                                                <span>
-                                                    →
-                                                </span>
-
+                                                <ArrowRight size={14} />
                                             </button>
 
                                         </div>
@@ -676,7 +524,7 @@ function JobSeekerDashboard() {
                             <div className="smart-card">
 
                                 <div className="smart-icon">
-                                    ✦
+                                    <Sparkles size={24} />
                                 </div>
 
                                 <h3>

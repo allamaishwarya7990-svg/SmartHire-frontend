@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { Briefcase, Search, Target, FileText, Users, ArrowRight } from "lucide-react";
+import SmartHireLogo from "../Components/SmartHireLogo";
 import "../CSS/Home.css";
 
 function Home() {
@@ -7,9 +9,7 @@ function Home() {
 
             {/* Navbar */}
             <nav className="home-navbar">
-                <div className="home-logo">
-                    SmartHire
-                </div>
+                <SmartHireLogo />
 
                 <div className="home-nav-links">
                     <Link to="/login" className="nav-login">
@@ -62,7 +62,7 @@ function Home() {
                 <div className="hero-card">
 
                     <div className="card-icon">
-                        💼
+                        <Briefcase size={28} />
                     </div>
 
                     <h3>
@@ -99,7 +99,7 @@ function Home() {
 
                     <div className="feature-card">
                         <div className="feature-icon">
-                            🔍
+                            <Search size={28} />
                         </div>
 
                         <h3>
@@ -114,7 +114,7 @@ function Home() {
 
                     <div className="feature-card">
                         <div className="feature-icon">
-                            🎯
+                            <Target size={28} />
                         </div>
 
                         <h3>
@@ -129,7 +129,7 @@ function Home() {
 
                     <div className="feature-card">
                         <div className="feature-icon">
-                            📋
+                            <FileText size={28} />
                         </div>
 
                         <h3>
@@ -144,7 +144,7 @@ function Home() {
 
                     <div className="feature-card">
                         <div className="feature-icon">
-                            👥
+                            <Users size={28} />
                         </div>
 
                         <h3>
@@ -185,9 +185,9 @@ function Home() {
             {/* Footer */}
             <footer className="home-footer">
 
-                <h3>
-                    SmartHire
-                </h3>
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.75rem" }}>
+                    <SmartHireLogo />
+                </div>
 
                 <p>
                     A skill-based job portal for smarter recruitment.

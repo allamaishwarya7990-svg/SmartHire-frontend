@@ -1,265 +1,208 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { 
+    FileText, 
+    Clock, 
+    CheckCircle2, 
+    MapPin, 
+    Calendar, 
+    Sparkles, 
+    ArrowRight,
+    Search,
+    Inbox
+} from "lucide-react";
+import { jobSeekerApi } from "../services/api";
+import JobSeekerSidebar from "../Components/JobSeekerSidebar";
 import "../CSS/MyApplications.css";
+import "../CSS/theme.css";
+
+const fallbackApplications = [
+    {
+        id: "1",
+        jobId: "1",
+        title: "Software Developer",
+        company: "TechNova Solutions",
+        location: "Hyderabad, Telangana",
+        appliedDate: "Recently",
+        status: "Under Review",
+        eligibility: "85%"
+    }
+];
 
 function MyApplications() {
     const navigate = useNavigate();
+    const [applications, setApplications] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const applications = [
-        {
-            id: "APP-1001",
-            jobId: "1",
-            title: "Software Developer",
-            company: "TechNova Solutions",
-            location: "Hyderabad, Telangana",
-            appliedDate: "08 Oct 2026",
-            status: "Under Review",
-            eligibility: "80%"
-        },
-        {
-            id: "APP-1002",
-            jobId: "2",
-            title: "Java Developer",
-            company: "CodeCraft Technologies",
-            location: "Hyderabad, Telangana",
-            appliedDate: "05 Oct 2026",
-            status: "Shortlisted",
-            eligibility: "90%"
-        },
-        {
-            id: "APP-1003",
-            jobId: "3",
-            title: "Frontend Developer",
-            company: "PixelSoft Pvt. Ltd.",
-            location: "Remote",
-            appliedDate: "02 Oct 2026",
-            status: "Application Submitted",
-            eligibility: "75%"
+    useEffect(() => {
+        loadApplications();
+    }, []);
+
+    const loadApplications = async () => {
+        try {
+            setLoading(true);
+            const res = await jobSeekerApi.getApplications();
+            if (res.data && res.data.length > 0) {
+                const mapped = res.data.map((app) => ({
+                    id: String(app.id),
+                    jobId: String(app.jobId),
+                    title: app.jobTitle,
+                    company: app.companyName,
+                    location: app.jobLocation || "Hybrid",
+                    appliedDate: app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "Recent",
+                    status: app.status || "Application Submitted",
+                    eligibility: app.eligibilityScore ? `${app.eligibilityScore}%` : "80%"
+                }));
+                setApplications(mapped);
+            } else {
+                setApplications(fallbackApplications);
+            }
+        } catch (err) {
+            console.warn("Could not load applications from API, using fallback:", err);
+            setApplications(fallbackApplications);
+        } finally {
+            setLoading(false);
         }
-    ];
+    };
 
     const getStatusClass = (status) => {
-        if (status === "Shortlisted") {
-            return "status-shortlisted";
-        }
-
-        if (status === "Under Review") {
-            return "status-review";
-        }
-
-        if (status === "Rejected") {
-            return "status-rejected";
-        }
-
+        const s = (status || "").toLowerCase();
+        if (s.includes("shortlist")) return "status-shortlisted";
+        if (s.includes("review")) return "status-review";
+        if (s.includes("reject")) return "status-rejected";
         return "status-submitted";
     };
 
+    const underReviewCount = applications.filter((a) => (a.status || "").toLowerCase().includes("review")).length;
+    const shortlistedCount = applications.filter((a) => (a.status || "").toLowerCase().includes("shortlist")).length;
+
     return (
         <div className="applications-page">
+            <JobSeekerSidebar />
 
-            {/* Header */}
-            <header className="applications-header">
-
-                <div
-                    className="applications-logo"
-                    onClick={() => navigate("/jobseeker-dashboard")}
-                >
-                    Smart<span>Hire</span>
-                </div>
-
-                <div className="applications-header-actions">
-                    <button
-                        className="back-dashboard-btn"
-                        onClick={() =>
-                            navigate("/jobseeker-dashboard")
-                        }
-                    >
-                        ← Dashboard
-                    </button>
-                </div>
-
-            </header>
-
-            {/* Main Content */}
-            <main className="applications-container">
-
-                <div className="applications-heading">
+            <main className="applications-main">
+                {/* Topbar */}
+                <header className="applications-topbar">
                     <div>
-                        <span className="applications-label">
-                            JOB SEEKER
-                        </span>
-
-                        <h1>My Applications</h1>
-
-                        <p>
-                            Track and manage all the jobs you have applied for.
-                        </p>
+                        <h2>My Applications</h2>
+                        <p>Track and manage all the positions you have submitted applications for.</p>
                     </div>
 
-                    <button
-                        className="find-jobs-btn"
-                        onClick={() => navigate("/jobs")}
-                    >
-                        Find More Jobs →
+                    <button className="sh-btn sh-btn-primary sh-btn-sm" onClick={() => navigate("/jobs")} style={{ gap: "6px" }}>
+                        <Search size={14} />
+                        <span>Find More Jobs</span>
                     </button>
-                </div>
+                </header>
 
-                {/* Summary */}
-                <div className="application-summary">
-
-                    <div className="summary-card">
-                        <div className="summary-icon purple">
-                            📄
+                <div className="applications-container">
+                    {/* Summary Metrics */}
+                    <div className="application-summary">
+                        <div className="summary-card">
+                            <div className="summary-icon blue">
+                                <FileText size={20} />
+                            </div>
+                            <div>
+                                <span>Total Applications</span>
+                                <strong>{applications.length}</strong>
+                            </div>
                         </div>
 
-                        <div>
-                            <span>Total Applications</span>
-                            <strong>{applications.length}</strong>
-                        </div>
-                    </div>
-
-                    <div className="summary-card">
-                        <div className="summary-icon blue">
-                            🔍
-                        </div>
-
-                        <div>
-                            <span>Under Review</span>
-                            <strong>
-                                {
-                                    applications.filter(
-                                        (app) =>
-                                            app.status === "Under Review"
-                                    ).length
-                                }
-                            </strong>
-                        </div>
-                    </div>
-
-                    <div className="summary-card">
-                        <div className="summary-icon green">
-                            ✓
+                        <div className="summary-card">
+                            <div className="summary-icon warning">
+                                <Clock size={20} />
+                            </div>
+                            <div>
+                                <span>Under Review</span>
+                                <strong>{underReviewCount}</strong>
+                            </div>
                         </div>
 
-                        <div>
-                            <span>Shortlisted</span>
-                            <strong>
-                                {
-                                    applications.filter(
-                                        (app) =>
-                                            app.status === "Shortlisted"
-                                    ).length
-                                }
-                            </strong>
+                        <div className="summary-card">
+                            <div className="summary-icon green">
+                                <CheckCircle2 size={20} />
+                            </div>
+                            <div>
+                                <span>Shortlisted</span>
+                                <strong>{shortlistedCount}</strong>
+                            </div>
                         </div>
                     </div>
 
-                </div>
-
-                {/* Applications List */}
-                <section className="applications-section">
-
-                    <div className="applications-section-header">
-                        <div>
-                            <h2>Recent Applications</h2>
-                            <p>
-                                Your latest job applications and their current
-                                status.
-                            </p>
+                    {/* Applications List */}
+                    <section className="applications-section">
+                        <div className="applications-section-header">
+                            <div>
+                                <h2>Submitted Applications</h2>
+                                <p>Real-time status tracking updated directly by verified employers.</p>
+                            </div>
+                            <span className="application-count">
+                                {applications.length} Applications
+                            </span>
                         </div>
 
-                        <span className="application-count">
-                            {applications.length} Applications
-                        </span>
-                    </div>
-
-                    <div className="applications-list">
-
-                        {applications.map((application) => (
-                            <div
-                                className="application-card"
-                                key={application.id}
-                            >
-
-                                {/* Company Icon */}
-                                <div className="application-company-icon">
-                                    {application.company.charAt(0)}
+                        {loading ? (
+                            <div style={{ textAlign: "center", padding: "40px", color: "var(--text-secondary)" }}>
+                                Loading your applications...
+                            </div>
+                        ) : applications.length === 0 ? (
+                            <div className="sh-empty-state">
+                                <div className="sh-empty-icon">
+                                    <Inbox size={32} />
                                 </div>
-
-                                {/* Main Info */}
-                                <div className="application-main">
-
-                                    <div className="application-title-row">
-
-                                        <div>
-                                            <h3>
-                                                {application.title}
-                                            </h3>
-
-                                            <p>
-                                                {application.company}
-                                            </p>
+                                <h3 className="sh-empty-title">No applications submitted yet</h3>
+                                <p className="sh-empty-desc">Explore open jobs and submit your first application today!</p>
+                                <button className="sh-btn sh-btn-primary" onClick={() => navigate("/jobs")}>
+                                    Browse Jobs
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="applications-list">
+                                {applications.map((application) => (
+                                    <div className="application-card" key={application.id}>
+                                        <div className="application-company-icon">
+                                            {application.company.charAt(0)}
                                         </div>
 
-                                        <span
-                                            className={`application-status ${getStatusClass(
-                                                application.status
-                                            )}`}
-                                        >
-                                            {application.status}
-                                        </span>
+                                        <div className="application-main">
+                                            <div className="application-title-row">
+                                                <div>
+                                                    <h3>{application.title}</h3>
+                                                    <p>{application.company}</p>
+                                                </div>
 
+                                                <span className={`application-status ${getStatusClass(application.status)}`}>
+                                                    {application.status}
+                                                </span>
+                                            </div>
+
+                                            <div className="application-meta">
+                                                <span><MapPin size={13} style={{ display: "inline-block", verticalAlign: "middle", marginRight: "4px" }} />{application.location}</span>
+                                                <span><Calendar size={13} style={{ display: "inline-block", verticalAlign: "middle", marginRight: "4px" }} />Applied {application.appliedDate}</span>
+                                                <span><Sparkles size={13} style={{ display: "inline-block", verticalAlign: "middle", marginRight: "4px" }} />{application.eligibility} Match</span>
+                                            </div>
+
+                                            <div className="application-bottom">
+                                                <span className="application-number">
+                                                    Application ID: <strong>#APP-{application.id}</strong>
+                                                </span>
+
+                                                <button
+                                                    className="view-application-btn"
+                                                    onClick={() => navigate(`/applications/${application.id}`)}
+                                                    style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                                                >
+                                                    <span>View Details</span>
+                                                    <ArrowRight size={13} />
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <div className="application-meta">
-
-                                        <span>
-                                            📍 {application.location}
-                                        </span>
-
-                                        <span>
-                                            📅 Applied{" "}
-                                            {application.appliedDate}
-                                        </span>
-
-                                        <span>
-                                            ✓ {application.eligibility} Match
-                                        </span>
-
-                                    </div>
-
-                                    <div className="application-bottom">
-
-                                        <span className="application-number">
-                                            Application ID:{" "}
-                                            <strong>
-                                                {application.id}
-                                            </strong>
-                                        </span>
-
-                                        <button
-                                            className="view-application-btn"
-                                            onClick={() =>
-                                                navigate(
-                                                    `/applications/${application.id}`
-                                                )
-                                            }
-                                        >
-                                            View Application →
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
+                                ))}
                             </div>
-                        ))}
-
-                    </div>
-
-                </section>
-
+                        )}
+                    </section>
+                </div>
             </main>
-
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import SmartHireLogo from "../Components/SmartHireLogo";
 import "../CSS/Login.css";
 
 function Login() {
@@ -108,10 +109,9 @@ function Login() {
 
             <div className="login-container">
 
-                <Link to="/" className="login-logo">
-                    <span className="login-logo-symbol">S</span>
-                    <span>SmartHire</span>
-                </Link>
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}>
+                    <SmartHireLogo />
+                </div>
 
                 <h2 className="login-title">
                     Welcome Back
