@@ -1,14 +1,19 @@
 import axios from "axios";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8081";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+if (import.meta.env.PROD && !API_BASE_URL) {
+    throw new Error("VITE_API_BASE_URL is missing in Vercel");
+}
 
 const apiClient = axios.create({
-    baseURL: API_BASE_URL,
+    baseURL: API_BASE_URL || "http://localhost:8081",
     headers: {
         "Content-Type": "application/json"
     }
 });
+
+console.log("API BASE URL:", apiClient.defaults.baseURL);
 
 // Request interceptor to attach JWT token
 apiClient.interceptors.request.use(
