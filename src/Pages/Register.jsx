@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Sparkles, ArrowRight } from "lucide-react";
 import SmartHireLogo from "../Components/SmartHireLogo";
-import { authApi } from "../api";
+import { authApi } from "../services/api.js";
 import "../CSS/Register.css";
 
 function Register() {
