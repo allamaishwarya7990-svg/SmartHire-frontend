@@ -3,7 +3,11 @@ import axios from "axios";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 if (import.meta.env.PROD && !API_BASE_URL) {
-    throw new Error("VITE_API_BASE_URL is missing in Vercel");
+    console.error(
+        "[SmartHire] VITE_API_BASE_URL is not set. " +
+        "Add it to Vercel → Settings → Environment Variables. " +
+        "API calls will fail until this is configured."
+    );
 }
 
 const apiClient = axios.create({
@@ -12,8 +16,6 @@ const apiClient = axios.create({
         "Content-Type": "application/json"
     }
 });
-
-console.log("API BASE URL:", apiClient.defaults.baseURL);
 
 // Request interceptor to attach JWT token
 apiClient.interceptors.request.use(
@@ -27,7 +29,6 @@ apiClient.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// Response interceptor to handle session expiration
 // Response interceptor: distinguish expired sessions from permission errors
 apiClient.interceptors.response.use(
   (response) => response,
@@ -36,10 +37,10 @@ apiClient.interceptors.response.use(
     const currentPath = window.location.pathname;
 
     if (status === 401) {
-      // A 401 means the request was not authenticated.
       const publicPaths = ["/login", "/register", "/"];
-
-      const isPublicPath = publicPaths.includes(currentPath);
+      const isPublicPath = publicPaths.some(p =>
+        currentPath === p || currentPath.startsWith(p + "/")
+      );
 
       // Avoid redirect loops on public pages.
       if (!isPublicPath) {
@@ -47,11 +48,13 @@ apiClient.interceptors.response.use(
         localStorage.removeItem("email");
         localStorage.removeItem("role");
 
-        window.location.replace("/login");
+        // Preserve the intended destination so we can redirect back after login
+        const returnTo = encodeURIComponent(currentPath + window.location.search);
+        window.location.replace(`/login?returnTo=${returnTo}`);
       }
     }
 
-    // A 403 is a permission error. Do not automatically erase the session.
+    // A 403 is a permission error — do not erase the session.
     return Promise.reject(error);
   }
 );
